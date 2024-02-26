@@ -12,6 +12,14 @@ public class LinkedList {
         
     }
 
+    public static class NodeComparator implements Comparator<Node> {
+
+        @Override
+        public int compare(Node o1, Node o2) {
+            return o1.value - o2.value;
+        }
+    }
+
     public static boolean huiwenLinkedList(Node head) {
         Stack<Node> stack = new Stack<Node>();
         Node cur = head;
@@ -78,4 +86,53 @@ public class LinkedList {
         }
         return pre;
     }
+
+    public static void listPartition(Node head ,int pivot) {
+        Node sh = null;  //开始节点头尾 等于区头尾 大于区头尾
+        Node st = null;
+        Node eh = null;
+        Node et = null;
+        Node bh = null;
+        Node bt = null;
+        Node next = null;
+        //循环对每个节点分类
+        while (head != null){
+            next = head.next;
+            head.next = null;
+            if(head.value < pivot){
+                if (sh == null){
+                    sh = head;
+                    st = head;
+                }else {
+                    st.next = head;
+                    st = head;
+                }
+            } else if (head.value == pivot) {
+                if (eh == null){
+                    eh = head;
+                    et = head;
+                }else {
+                    et.next = head;
+                    et = head;
+                }
+            } else if (head.value >pivot) {
+                if (bh == null){
+                    bh = head;
+                    bt = head;
+                }else {
+                    bt.next = head;
+                    bt = head;
+                }
+            }
+            head = next;
+        }
+        if (st != null){
+            st.next = eh;
+            et = et == null ? st : et;
+        }
+    }
+    public static void main(String[] args) {
+
+    }
+
 }
