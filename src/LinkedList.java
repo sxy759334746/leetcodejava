@@ -131,6 +131,27 @@ public class LinkedList {
             et = et == null ? st : et;
         }
     }
+
+    public Node partition(Node head, int x) {
+        Node small = null;
+        Node large = null;
+
+        while(head != null){
+            if(head.value <x){
+                small = head;
+                small.next = head;
+            }else{
+                large = head;
+                large.next = head;
+            }
+            head = head.next;
+        }
+        small.next = large;
+        large.next = null;
+
+        return small;
+    }
+
     public static void main(String[] args) {
 
     }
