@@ -1,6 +1,3 @@
-package Leetcode;
-import java.util.*;
-
 public class HeapSort {
     public static void headSor(int[] arr) {
         if(arr ==null || arr.length < 2){

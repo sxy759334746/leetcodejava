@@ -86,6 +86,13 @@ public class LinkedList {
         }
         return pre;
     }
+    //反转链表的递归方法
+    public static Node convertLinkedList2(Node head) {
+        Node pre = null;
+        return pre;
+    }
+
+
 
     public static void listPartition(Node head ,int pivot) {
         Node sh = null;  //开始节点头尾 等于区头尾 大于区头尾
@@ -131,7 +138,6 @@ public class LinkedList {
             et = et == null ? st : et;
         }
     }
-
     public Node partition(Node head, int x) {
         Node small = null;
         Node large = null;
