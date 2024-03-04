@@ -159,6 +159,9 @@ public class LinkedList {
     }
 
     public static void main(String[] args) {
+        int q = 10;
+        double p = 10.0;
+        System.out.println(q == p); //true
 
     }
 
