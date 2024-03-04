@@ -165,4 +165,27 @@ public class LinkedList {
 
     }
 
+    //leetcode19删除倒数节点  但是报错
+    public static Node removeNthFromEnd(Node head, int n) {
+        Node n1 = head;
+        Node n2 = head;
+        Node n3 = head;
+
+        int index = 1;
+        while(n1.next != null){
+            index++;
+            n1 = n1.next;
+        }
+        // n2 = n2.next;
+        int i2 = 0;
+        while(i2 == index - n - 1){
+            i2++;
+            n2 = n2.next;
+        }
+        // ListNode tmp = n2.next.next;
+        n2.next = n2.next.next;
+        return head;
+    }
+
+
 }
