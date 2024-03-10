@@ -5,7 +5,7 @@ public class LinkedList {
     public static class Node {
         public int value;
         public Node next;
-        
+        public Node rand;
         public Node(int data){
             this.value = value;
         }
@@ -94,7 +94,7 @@ public class LinkedList {
 
 
 
-    public static void listPartition(Node head ,int pivot) {
+    public static Node listPartition(Node head ,int pivot) {
         Node sh = null;  //开始节点头尾 等于区头尾 大于区头尾
         Node st = null;
         Node eh = null;
@@ -137,6 +137,10 @@ public class LinkedList {
             st.next = eh;
             et = et == null ? st : et;
         }
+        if (et != null){
+            et.next = bh;
+        }
+        return sh != null ? sh: (eh != null ? eh : bh);
     }
     public Node partition(Node head, int x) {
         Node small = null;
@@ -157,6 +161,80 @@ public class LinkedList {
 
         return small;
     }
+
+    //复制带有随机节点的链表1 用hashmap《新，老》
+    public Node copyListWithRand1(Node head, int x) {
+        HashMap<Node,Node> map = new HashMap<Node, Node>();
+        Node cur = head;
+        while (cur != null){
+            map.put(cur, new Node(cur.value));
+            cur = cur.next;
+        }
+        cur = head;
+        while (cur != null){
+            map.get(cur).next = map.get(cur.next);
+            map.get(cur).rand = map.get(cur.rand);
+            cur = cur.next;
+        }
+
+        return  map.get(head);
+    }
+
+    //复制带有随机节点的链表2 老1-新1-老2-新2...这样排列然后给新的添加rand
+    public Node copyListWithRand2(Node head, int x) {
+        if(head == null){
+            return null;
+        }
+        Node cur = head;
+        Node next = null;
+
+        while (cur != null){
+            next = cur.next;
+            cur.next = new Node(cur.value);
+            cur.next.next = next;
+            next = cur;
+        }
+        cur = head;
+        Node curCopy = null;
+        while (cur != null){
+            next = cur.next.next;
+            curCopy = cur.next;
+            //给新节点添加rand
+            curCopy.rand = cur.rand != null ? cur.rand.next : null;
+            cur = next;
+        }
+        Node res = head.next;
+        cur = head;
+
+        while (cur != null){
+            next = cur.next.next;
+            curCopy = cur.next;
+            cur.next = next;
+            curCopy.next = next != null ? next.next: null;
+            cur = next;
+        }
+        return res;
+    }
+
+    //找链表的入环节点就是快慢指针 相遇 然后快指针回到头节点 快慢每次都移动一步 再相遇
+    //找到两个链表的相交节点 具体分情况讨论：
+    public static Node getLoopNode(Node head){
+        //如果是两个链表都没有环 则两个链表都遍历看最后节点是否相等 且得到两个长度
+        //最后节点地址相等 则有相交 此时将较长的链表走 长度差值 步
+        //可以直接用n++ n-- 来完成
+        //然后两个链表并排走 找到等于的地址 就是相交节点
+
+        //如果两个链表都有环（一个有一个没有是不成立的）
+        //则有两种情况 如果相交节点在环外
+        //分别找到两个链表的入环节点 如果相等 则相交节点在环外
+        //此时情况等同于 无环相交节点 就把入环节点loop 作为节点尾
+        //如果 入环节点不相等 即 相交点在环内 则有两个相交点
+        //此时 loop1 继续走 如果在回到loop1之前 遇到了 loop2 则相交 否则不相交
+        // 入环节点等于相交节点 是特殊情况 都满足
+
+        return null;
+    }
+
 
     public static void main(String[] args) {
         int q = 10;
