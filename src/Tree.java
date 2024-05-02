@@ -1,3 +1,4 @@
+import javax.imageio.metadata.IIOMetadataNode;
 import java.util.*;
 import java.util.LinkedList;
 import java.lang.Math;
@@ -514,6 +515,49 @@ public class Tree {
         printProcess(i+1,N,false);
 
     }
+
+
+    //树形dp
+
+    //二叉树递归
+    //获得二叉树种两个节点之间的最大距离
+    //向左数要信息，向右树要信息
+
+    //思考 按照头节点是否参与来分
+
+    public static int getMaxDistance(TreeNode head){
+        return processMaxDistance(head).maxDistance;
+    }
+    public static class InfoForMaxDistance{
+        public int maxDistance;
+        public int height;
+        public InfoForMaxDistance(int dis, int h){
+            maxDistance = dis;
+            height = h;
+        }
+    }
+    public static InfoForMaxDistance processMaxDistance(TreeNode x){
+        if (x == null) return new InfoForMaxDistance(0,0);
+        InfoForMaxDistance leftInfo = processMaxDistance(x.left);
+        InfoForMaxDistance rightInfo = processMaxDistance(x.right);
+
+        int p1 = leftInfo.maxDistance;
+        int p2 = rightInfo.maxDistance;
+        int p3 = leftInfo.height + 1 + rightInfo.height;
+
+        int max = Math.max(p3, Math.max(p1,p2));
+        int height = Math.max(leftInfo.height, rightInfo.height) + 1;
+
+        return new InfoForMaxDistance(max,height);
+
+    }
+
+
+
+
+
+
+
 
 
 
