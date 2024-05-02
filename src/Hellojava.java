@@ -1,4 +1,4 @@
-public class hellojava {
+public class Hellojava {
 
 /*
  * leetcode75 荷兰国旗问题  双指针大于小于区域 快速排序的先验

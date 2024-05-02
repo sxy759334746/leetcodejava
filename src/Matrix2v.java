@@ -1,4 +1,4 @@
-public class matrix2v {
+public class Matrix2v {
     
     public static void main(String[] args) {
         
