@@ -9,10 +9,17 @@ public class Tree {
         public TreeNode left;
         public TreeNode right;
 
+        public TreeNode(){};
         public TreeNode(int data){
             this.value = data;
         }
     }
+
+    public static void main(String[] args) {
+        TreeNode test = new TreeNode();//没有赋值的也不是null 是Tree$TreeNode@6a5fc7f7
+        System.out.println(test);
+    }
+
 
     //先序遍历
     public static void preOrderRecur(TreeNode head){

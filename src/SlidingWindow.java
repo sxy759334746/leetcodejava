@@ -58,7 +58,7 @@ public class SlidingWindow {
             if (qmax.peekFirst() == i - w ){ //如果满足说明现在窗口满了
                 qmax.pollFirst();
             }
-            if (i > w-1)res[index++] = arr[qmax.peekFirst()];
+            if (i >= w-1)res[index++] = arr[qmax.peekFirst()];
         }
         return res;
     }
