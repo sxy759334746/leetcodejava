@@ -1,11 +1,8 @@
-## Getting Started
-### 记录力扣学习代码，java练习代码
+## 记录力扣学习代码，java练习代码
+
+from左程云 labulangdong 代码随想录 卡码网 力扣
 
 
-## Folder Structure
-
-
-## Dependency Management
 
 
 数组
